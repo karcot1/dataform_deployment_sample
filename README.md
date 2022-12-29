@@ -1,6 +1,8 @@
 # dataform_deployment_sample
 Sample code to demonstrate how Dataform pipelines can be set up and scaled using Cloud Build and Pub/Sub.
 
+## About this project
+
 **Overview**
 
 This code is intended to serve as an example of how to set up Dataform deployments that can easily scale to become complex but manageable pipelines. When executed, Dataform will create three separate subject areas in sequence: account, customer, and sales.
@@ -34,8 +36,8 @@ Before running this code, please ensure you have completed the following steps:
 
 1. Edit dataform.json to ensure "defaultDatabase" is pointed at your GCP project
 2. In this GCP project, create a service account with the following permissions:
- - BigQuery Admin
- - Logs Writer
+    - BigQuery Admin
+    - Logs Writer
 3. Ensure that Cloud Build, Pub/Sub, and BigQuery APIs are enabled
 5. In Pub/Sub, create a topic called "dataform-deployments"
 4. Connect this repository (or a forked version of it) in Cloud Build. Region does not matter, but the build triggers must be created in the same location as your repository.
@@ -85,4 +87,16 @@ Once the workflow is complete and has been tested locally, it can be integrated 
 
 
 Just be sure to change the DATAFORM_TAGS value to point to your new workflow, and update the subjectArea attribute of the final Pub/Sub step.
+
+**CICD with Dataform**
+
+This workflow can also be expanded into a more robust CICD implementation - consider the following example as a starting point:
+
+- Create three GCP projects for each environment (dev, stage, prod) and three branches in GitHub to reflect this. Update dataform.json to point to the appropriate project in each branch.
+
+- Create the same triggers in each project, but specify the appropriate branch to use.
+
+- Have developers create feature branches off of prod and create changes. Merge the changes into dev to test, then into stage, then into production.
+
+
 
