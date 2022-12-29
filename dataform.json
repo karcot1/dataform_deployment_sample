@@ -3,5 +3,6 @@
     "defaultSchema": "dataform",
     "assertionSchema": "dataform_assertions",
     "defaultDatabase": "dataform-test-362521",
+    "defaultLocation": "US",
     "useRunCache": false
 }

@@ -14,7 +14,7 @@
 
 config {
     type: "view",
-    tags: ["account"]
+    tags: ["account"],
     dependencies: ["create_tables"]
 }
 

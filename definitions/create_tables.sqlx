@@ -13,8 +13,8 @@
 -- limitations under the License.
 
 config {
-    type: "operations"
-    tags: ["init"]
+    type: "operations",
+    tags: ["account"]
 }
 
 create table if not exists account_source as
