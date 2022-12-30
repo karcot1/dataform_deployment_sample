@@ -37,7 +37,7 @@ fi
 printf """
 Executing the following dataform command:
 ************************************************************
-dataform run %s %s --vars=subjectArea=${SA}
+dataform run %s %s
 ************************************************************
 """ "${all_dataform_tags}" "${all_dataform_actions}"
 
