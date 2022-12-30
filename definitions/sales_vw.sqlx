@@ -17,4 +17,4 @@ config {
     tags: ["sales"]
 }
 
-select * from sales_source
+select * from dataform.sales_source

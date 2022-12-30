@@ -17,4 +17,4 @@ config {
     tags: ["customer"]
 }
 
-select * from customer_source
+select * from dataform.customer_source

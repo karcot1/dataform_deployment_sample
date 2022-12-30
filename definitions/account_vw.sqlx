@@ -17,4 +17,4 @@ config {
     tags: ["account"]
 }
 
-select * from account_source
+select * from dataform.account_source
