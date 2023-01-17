@@ -48,7 +48,7 @@ In your GCP project, create a cloud build trigger for each sample subject area. 
 
 Set each trigger to connect to this repository, and point it towards the appropriate YAML configuration file (e.g., for "account", make sure the trigger points to "cloud_build_account.yaml").
 
-For the Pub/Sub invoked triggers, subscribe to a 
+For the Pub/Sub invoked triggers, subscribe to the "dataform-deployments" topic you created in the previous section. 
 
 For all three triggers, set the following subsitution variables:
 - _PROJECT_ID --> your GCP project
