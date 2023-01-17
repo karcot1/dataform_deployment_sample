@@ -81,7 +81,7 @@ NOTE: If you would like to expand any subject area into more steps or create a m
 
 **Adding new subject areas**
 
-Adding new steps to your DAG is also a straightforward process - the workflow itself can be created in SQLX files using Dataform. Like the existing build, ensure that all files in this new workflow have a tag in their config file that ties them together. 
+Adding new steps to your DAG is also a straightforward process - the workflow itself can be created in SQLX files using Dataform. Like the existing build, ensure that all files in this new workflow have a tag in their config block that ties them together. 
 
 Once the workflow is complete and has been tested locally, it can be integrated into your overall build by adding a new YAML file that follows the same structure as the existing ones, and creating a new Cloud Build trigger.
 
