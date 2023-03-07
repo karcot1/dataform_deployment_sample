@@ -7,11 +7,15 @@ Sample code to demonstrate how Dataform pipelines can be set up and scaled using
 
 This code is intended to serve as an example of how to set up Dataform deployments that can easily scale to become complex but manageable pipelines. When executed, Dataform will create three separate subject areas in sequence: account, customer, and sales.
 
+<img width="550" alt="image" src="https://user-images.githubusercontent.com/111666655/223486816-9c24e7c7-1d86-4232-b06f-e8bc130744f9.png">
+
 By creating a Cloud Build trigger for each build, we ensure that any one subject area can also be built on its own in addition to being part of a larger pipeline.
 
 Each build consists of a series of "dataform run" executions that create and run BigQuery jobs. The orchestration of these jobs is all handled by Dataform, based on the SQLX code stored in this repository. The final step in each build pushes a "success" message to the Pub/Sub topic, with metadata specifying which subject area has just completed.  
 
-The pipeline executes in the following order: account --> customer --> sales
+The pipeline executes in the following order: subject area 1 (account) --> subject area 2 (customer) --> subject area 3 (sales)
+
+<img width="565" alt="image" src="https://user-images.githubusercontent.com/111666655/223487076-c6fce917-13e6-42a4-9511-8df89d964e80.png">
 
 The final step in "account" is to publish a message to the Pub/Sub topic "dataform-deployments". The customer build is a Pub/Sub invoked trigger that is subscribed to the dataform-deployments topic. When the message from account comes through, it fires off the build for "customer". Similarly, the final step of "customer" is to publish a message to the same topic, which kicks off the "sales" build.
 
@@ -97,6 +101,9 @@ This workflow can also be expanded into a more robust CICD implementation - cons
 - Create the same triggers in each project, but specify the appropriate branch to use.
 
 - Have developers create feature branches off of prod and create changes. Merge the changes into dev to test, then into stage, then into production.
+
+<img width="645" alt="image" src="https://user-images.githubusercontent.com/111666655/223487835-9c23389e-0a07-42ec-9539-fc9460df8771.png">
+
 
 
 
