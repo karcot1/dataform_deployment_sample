@@ -16,7 +16,7 @@ steps:
   ###########################################################
   # Build and deploy BigQuery assets
   ###########################################################
-    - id: unit-tests
+  - id: unit-tests
     name: dataformco/dataform
     dir: /workspace
     entrypoint: bash
