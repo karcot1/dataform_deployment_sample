@@ -17,4 +17,4 @@ config {
     tags: ["account"]
 }
 
-select * from ${ref("account_source")}
+select * from dataform.account_source

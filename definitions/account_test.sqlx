@@ -8,7 +8,7 @@ config {
     dataset: "account_vw",
 }
 
-input "account_source" {
+input "dataform.account_source" {
     select 1 as account_id UNION ALL 
     select 2 as account_id UNION ALL 
     select 3 as account_id
