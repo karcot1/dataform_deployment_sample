@@ -1,0 +1,6 @@
+config {
+    type: "assertion",
+    tags: "account_data_checks"
+}
+
+select * from dataform.account_source where account_id < 0

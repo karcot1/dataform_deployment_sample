@@ -26,6 +26,26 @@ steps:
       - PROJECT_ID=${_PROJECT_ID}
       - BQ_LOCATION=${_BQ_LOCATION}
       - DATAFORM_TAGS=init
+  
+  - id: unit-tests
+    name: dataformco/dataform
+    dir: /workspace
+    entrypoint: bash
+    args: ['dataform', 'test']
+    env:
+      - PROJECT_ID=${_PROJECT_ID}
+      - BQ_LOCATION=${_BQ_LOCATION}
+    
+  - id: data-checks
+    name: dataformco/dataform
+    dir: /workspace
+    entrypoint: bash
+    args:
+      - run.sh
+    env:
+      - PROJECT_ID=${_PROJECT_ID}
+      - BQ_LOCATION=${_BQ_LOCATION}
+      - DATAFORM_TAGS=account_data_checks
 
   - id: build-account
     name: dataformco/dataform

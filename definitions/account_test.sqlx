@@ -1,0 +1,19 @@
+/*
+A simple example of unit test functionality
+This step validates that the SQL logic for "account_vw" will return the expected results
+*/
+
+config {
+    type: "test",
+    dataset: "account_vw",
+}
+
+input "account_source" {
+    select 1 as account_id UNION ALL 
+    select 2 as account_id UNION ALL 
+    select 3 as account_id
+}
+
+select 1 as account_id UNION ALL 
+select 2 as account_id UNION ALL 
+select 3 as account_id
