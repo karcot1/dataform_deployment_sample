@@ -20,7 +20,10 @@ steps:
     name: dataformco/dataform
     dir: /workspace
     entrypoint: bash
-    args: ['dataform', 'test']
+    args:
+      - '-c'
+      - |
+        dataform test
     env:
       - PROJECT_ID=${_PROJECT_ID}
       - BQ_LOCATION=${_BQ_LOCATION}

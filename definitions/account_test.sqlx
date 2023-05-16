@@ -5,10 +5,10 @@ This step validates that the SQL logic for "account_vw" will return the expected
 
 config {
     type: "test",
-    dataset: "account_vw",
+    dataset: "account_vw"
 }
 
-input "dataform.account_source" {
+input "account_source" {
     select 1 as account_id UNION ALL 
     select 2 as account_id UNION ALL 
     select 3 as account_id
