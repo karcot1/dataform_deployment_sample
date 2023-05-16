@@ -7,11 +7,15 @@ Sample code to demonstrate how Dataform pipelines can be set up and scaled using
 
 This code is intended to serve as an example of how to set up Dataform deployments that can easily scale to become complex but manageable pipelines. When executed, Dataform will create three separate subject areas in sequence: account, customer, and sales.
 
+<img width="550" alt="image" src="https://user-images.githubusercontent.com/111666655/223486816-9c24e7c7-1d86-4232-b06f-e8bc130744f9.png">
+
 By creating a Cloud Build trigger for each build, we ensure that any one subject area can also be built on its own in addition to being part of a larger pipeline.
 
 Each build consists of a series of "dataform run" executions that create and run BigQuery jobs. The orchestration of these jobs is all handled by Dataform, based on the SQLX code stored in this repository. The final step in each build pushes a "success" message to the Pub/Sub topic, with metadata specifying which subject area has just completed.  
 
-The pipeline executes in the following order: account --> customer --> sales
+The pipeline executes in the following order: subject area 1 (account) --> subject area 2 (customer) --> subject area 3 (sales)
+
+<img width="565" alt="image" src="https://user-images.githubusercontent.com/111666655/223487076-c6fce917-13e6-42a4-9511-8df89d964e80.png">
 
 The final step in "account" is to publish a message to the Pub/Sub topic "dataform-deployments". The customer build is a Pub/Sub invoked trigger that is subscribed to the dataform-deployments topic. When the message from account comes through, it fires off the build for "customer". Similarly, the final step of "customer" is to publish a message to the same topic, which kicks off the "sales" build.
 
@@ -48,7 +52,7 @@ In your GCP project, create a cloud build trigger for each sample subject area. 
 
 Set each trigger to connect to this repository, and point it towards the appropriate YAML configuration file (e.g., for "account", make sure the trigger points to "cloud_build_account.yaml").
 
-For the Pub/Sub invoked triggers, subscribe to a 
+For the Pub/Sub invoked triggers, subscribe to the "dataform-deployments" topic you created in the previous section. 
 
 For all three triggers, set the following subsitution variables:
 - _PROJECT_ID --> your GCP project
@@ -81,7 +85,7 @@ NOTE: If you would like to expand any subject area into more steps or create a m
 
 **Adding new subject areas**
 
-Adding new steps to your DAG is also a straightforward process - the workflow itself can be created in SQLX files using Dataform. Like the existing build, ensure that all files in this new workflow have a tag in their config file that ties them together. 
+Adding new steps to your DAG is also a straightforward process - the workflow itself can be created in SQLX files using Dataform. Like the existing build, ensure that all files in this new workflow have a tag in their config block that ties them together. 
 
 Once the workflow is complete and has been tested locally, it can be integrated into your overall build by adding a new YAML file that follows the same structure as the existing ones, and creating a new Cloud Build trigger.
 
@@ -97,6 +101,9 @@ This workflow can also be expanded into a more robust CICD implementation - cons
 - Create the same triggers in each project, but specify the appropriate branch to use.
 
 - Have developers create feature branches off of prod and create changes. Merge the changes into dev to test, then into stage, then into production.
+
+<img width="645" alt="image" src="https://user-images.githubusercontent.com/111666655/223487835-9c23389e-0a07-42ec-9539-fc9460df8771.png">
+
 
 
 
