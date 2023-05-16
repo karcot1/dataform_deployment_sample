@@ -21,9 +21,7 @@ steps:
     dir: /workspace
     entrypoint: bash
     args:
-      - '-c'
-      - |
-        dataform test
+      - run_tests.sh
     env:
       - PROJECT_ID=${_PROJECT_ID}
       - BQ_LOCATION=${_BQ_LOCATION}
