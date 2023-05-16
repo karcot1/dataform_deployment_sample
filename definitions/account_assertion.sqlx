@@ -1,3 +1,8 @@
+/*
+A simple example of a data quality check using Assertions
+If "account_source" has any IDs less than 0, the pipeline will stop and throw an error
+*/
+
 config {
     type: "assertion",
     tags: "account_data_checks"

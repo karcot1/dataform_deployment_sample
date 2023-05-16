@@ -15,6 +15,11 @@ Each build consists of a series of "dataform run" executions that create and run
 
 The pipeline executes in the following order: subject area 1 (account) --> subject area 2 (customer) --> subject area 3 (sales)
 
+The Account subject area contains two additional steps to demonstrate basic CI/CD principals: 
+
+1. A preliminary "unit test" step which runs any user defined tests and ensures they all pass prior to executing Dataform on actual BigQuery datasets
+2. A data quality step which runs Dataform assertions to ensure there is no bad data being processed
+
 <img width="565" alt="image" src="https://user-images.githubusercontent.com/111666655/223487076-c6fce917-13e6-42a4-9511-8df89d964e80.png">
 
 The final step in "account" is to publish a message to the Pub/Sub topic "dataform-deployments". The customer build is a Pub/Sub invoked trigger that is subscribed to the dataform-deployments topic. When the message from account comes through, it fires off the build for "customer". Similarly, the final step of "customer" is to publish a message to the same topic, which kicks off the "sales" build.
