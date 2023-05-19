@@ -5,7 +5,8 @@ If "account_source" has any IDs less than 0, the pipeline will stop and throw an
 
 config {
     type: "assertion",
-    tags: "account_data_checks"
+    tags: "account_data_checks",
+    dependencies: ["account_vw"]
 }
 
 select * from dataform.account_source where account_id < 0

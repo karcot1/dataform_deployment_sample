@@ -1,5 +1,0 @@
-config {
-    type: "declaration",
-    schema: "dataform",
-    name: "account_source"
-}

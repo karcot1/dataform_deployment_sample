@@ -14,7 +14,8 @@
 
 config {
     type: "view",
-    tags: ["customer"]
+    tags: ["customer"],
+    dependencies: ["create_tables"]
 }
 
 select * from dataform.customer_source

@@ -14,7 +14,8 @@
 
 config {
     type: "view",
-    tags: ["sales"]
+    tags: ["sales"],
+    dependencies: ["create_tables"]
 }
 
 select * from dataform.sales_source

@@ -14,7 +14,8 @@
 
 config {
     type: "view",
-    tags: ["account"]
+    tags: ["account"],
+    dependencies: ["create_tables"]
 }
 
-select * from ${ref("account_source")}
+select * from dataform.account_source
