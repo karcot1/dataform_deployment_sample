@@ -8,4 +8,4 @@ config {
     tags: "account_data_checks"
 }
 
-select * from dataform.account_source where account_id > 0
+select * from dataform.account_source where account_id < 0
